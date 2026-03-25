@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexus-worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nexus-worker
+  template:
+    metadata:
+      labels:
+        app: nexus-worker
+    spec:
+      containers:
+      - name: nexus-worker
+        image: nexus-worker:latest
+        imagePullPolicy: Never
+        env:
+        - name: NEXUS_WORKER_MASTER_URL
+          value: "http://nexus-master:8080"
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 500m

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexus-master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nexus-master
+  template:
+    metadata:
+      labels:
+        app: nexus-master
+    spec:
+      containers:
+      - name: nexus-master
+        image: nexus-master:latest
+        imagePullPolicy: Never
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:postgresql://postgres:5432/nexus_grid"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nexus-master
+spec:
+  selector:
+    app: nexus-master
+  ports:
+  - port: 8080

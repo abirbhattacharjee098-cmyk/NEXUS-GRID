@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: nexus-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: nexus_grid
+    networks:
+      - nexus-net
+
+  master-node:
+    build:
+      context: .
+      dockerfile: master-node/Dockerfile
+    container_name: nexus-master
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/nexus_grid
+    ports:
+      - "8085:8080"
+    networks:
+      - nexus-net
+
+  worker-node-1:
+    build:
+      context: .
+      dockerfile: worker-node/Dockerfile
+    depends_on:
+      - master-node
+    environment:
+      NEXUS_WORKER_MASTER_URL: http://master-node:8080
+    networks:
+      - nexus-net
+
+  worker-node-2:
+    build:
+      context: .
+      dockerfile: worker-node/Dockerfile
+    depends_on:
+      - master-node
+    environment:
+      NEXUS_WORKER_MASTER_URL: http://master-node:8080
+    networks:
+      - nexus-net
+
+networks:
+  nexus-net:
+    driver: bridge

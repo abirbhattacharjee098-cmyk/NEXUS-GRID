@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: master-node
+  datasource:
+    url: jdbc:postgresql://localhost:5432/nexus_grid
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+# Nexus Grid Custom Properties
+nexus:
+  master:
+    scheduler:
+      fixed-rate: 5000
+    health-checker:
+      fixed-rate: 10000
+      timeout-seconds: 15

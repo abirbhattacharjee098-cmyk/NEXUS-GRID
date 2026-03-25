@@ -1,0 +1,100 @@
+﻿        t1_0.job_id,
+        t1_0.payload,
+        t1_0.status 
+    from
+        tasks t1_0 
+    where
+        t1_0.assigned_worker_id=?
+Hibernate: 
+    select
+        w1_0.worker_id,
+        w1_0.cpu_usage,
+        w1_0.last_heartbeat,
+        w1_0.status 
+    from
+        workers w1_0 
+    where
+        w1_0.worker_id=?
+Hibernate: 
+    update
+        workers 
+    set
+        cpu_usage=?,
+        last_heartbeat=?,
+        status=? 
+    where
+        worker_id=?
+Hibernate: 
+    select
+        w1_0.worker_id,
+        w1_0.cpu_usage,
+        w1_0.last_heartbeat,
+        w1_0.status 
+    from
+        workers w1_0 
+    where
+        w1_0.worker_id=?
+Hibernate: 
+    update
+        workers 
+    set
+        cpu_usage=?,
+        last_heartbeat=?,
+        status=? 
+    where
+        worker_id=?
+Hibernate: 
+    select
+        t1_0.task_id,
+        t1_0.assigned_worker_id,
+        t1_0.job_id,
+        t1_0.payload,
+        t1_0.status 
+    from
+        tasks t1_0 
+    where
+        t1_0.assigned_worker_id=?
+Hibernate: 
+    select
+        t1_0.task_id,
+        t1_0.assigned_worker_id,
+        t1_0.job_id,
+        t1_0.payload,
+        t1_0.status 
+    from
+        tasks t1_0 
+    where
+        t1_0.assigned_worker_id=?
+Hibernate: 
+    select
+        t1_0.task_id,
+        t1_0.assigned_worker_id,
+        t1_0.job_id,
+        t1_0.payload,
+        t1_0.status 
+    from
+        tasks t1_0 
+    where
+        t1_0.status=?
+Hibernate: 
+    select
+        t1_0.task_id,
+        t1_0.assigned_worker_id,
+        t1_0.job_id,
+        t1_0.payload,
+        t1_0.status 
+    from
+        tasks t1_0 
+    where
+        t1_0.assigned_worker_id=?
+Hibernate: 
+    select
+        t1_0.task_id,
+        t1_0.assigned_worker_id,
+        t1_0.job_id,
+        t1_0.payload,
+        t1_0.status 
+    from
+        tasks t1_0 
+    where
+        t1_0.assigned_worker_id=?

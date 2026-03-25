@@ -1,0 +1,18 @@
+server:
+  port: 0 # Use random port so multiple workers can run locally
+
+spring:
+  application:
+    name: worker-node
+
+logging:
+  level:
+    com.nexus.worker: INFO
+
+nexus:
+  worker:
+    master-url: http://localhost:8080
+    heartbeat:
+      fixed-rate: 5000
+    task-poller:
+      fixed-rate: 2000
