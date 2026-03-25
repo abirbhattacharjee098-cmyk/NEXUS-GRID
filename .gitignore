@@ -1,0 +1,14 @@
+# Maven
+target/
+
+# Logs
+*.log
+
+# Temp files
+*.txt
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
