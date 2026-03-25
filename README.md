@@ -1,30 +1,63 @@
-# Nexus Grid - Distributed Computing Engine
+# ⚡ NEXUS GRID — Distributed Computing Engine
 
-## Prerequisites
-- Java 17
-- Maven
-- PostgreSQL running on localhost:5432 (Database `nexus_grid`, Username `postgres`, Password `password`)
+A fault-tolerant, scalable distributed computing system built in Java that simulates real-world cloud infrastructure using a master-worker architecture.
 
-## Running the Application
-1. **Start Master Node:**
-   ```bash
-   cd master-node
-   mvn spring-boot:run
-   ```
-2. **Start Worker Node(s):**
-   Open a new terminal and run:
-   ```bash
-   cd worker-node
-   mvn spring-boot:run
-   ```
-   *You can repeat step 2 in multiple terminals to spin up multiple workers. They will bind to random ports.*
+---
 
-## Testing End-to-End
-Submit a job using `curl` or Postman:
-```bash
-curl -X POST http://localhost:8080/api/jobs/submitJob \
--H "Content-Type: application/json" \
--d '{"jobType": "DATA_PROCESSING", "payload": "Process User Data"}'
+## 🚀 Overview
+
+NEXUS GRID is designed to execute large-scale computational tasks by distributing workloads across multiple worker nodes.
+
+It ensures:
+
+* Parallel task execution
+* Fault tolerance (auto-recovery on node failure)
+* Intelligent scheduling
+* Scalable architecture
+
+---
+
+## 🧠 Architecture
+
+```
+          CLIENT
+             ↓
+      MASTER NODE
+   (Scheduler + Brain)
+      ↓     ↓     ↓
+   Worker Worker Worker
 ```
 
-Watch the master node console split the job into tasks, and the worker node consoles pull, execute, and return the result back to master! Also, try killing a worker node to see the master node detect it as DEAD and reassign its tasks to other available workers.
+---
+
+## ⚙️ Core Features
+
+### 🔹 Distributed Task Execution
+
+Breaks large jobs into smaller tasks and processes them across multiple worker nodes.
+
+### 🔹 Intelligent Scheduler
+
+Assigns tasks based on worker availability and system load.
+
+### 🔹 Fault Tolerance
+
+Automatically detects worker failure and reassigns tasks.
+
+### 🔹 Heartbeat Monitoring
+
+Continuously tracks worker health using periodic signals.
+
+### 🔹 Scalable Design
+
+Supports horizontal scaling with additional worker nodes.
+
+---
+
+## 🛠️ Tech Stack
+
+* Java (Core + Advanced)
+* Spring Boot
+* REST APIs
+* PostgreSQL
+* Doc
