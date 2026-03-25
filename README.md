@@ -1,56 +1,15 @@
 # ⚡ NEXUS GRID — Distributed Computing Engine
 
-A fault-tolerant, scalable distributed computing system built in Java that simulates real-world cloud infrastructure using a master-worker architecture.
+A distributed execution engine that parallelizes workloads, handles node failures, and produces real-time analytical results.
 
 ---
 
-## 🚀 Overview
+## 🔥 Key Highlights
 
-NEXUS GRID is designed to execute large-scale computational tasks by distributing workloads across multiple worker nodes.
-
-It enables:
-
-* ⚡ Parallel execution of tasks
-* 🧠 Intelligent scheduling
-* 🔁 Automatic failure recovery
-* 📈 Horizontal scalability
-
----
-
-## 🧠 Architecture
-
-```
-          CLIENT
-             ↓
-      MASTER NODE
-   (Scheduler + Brain)
-      ↓     ↓     ↓
-   Worker Worker Worker
-```
-
----
-
-## ⚙️ Core Features
-
-### 🔹 Distributed Task Execution
-
-Breaks large jobs into smaller tasks and executes them across multiple worker nodes in parallel.
-
-### 🔹 Intelligent Scheduler
-
-Assigns tasks dynamically based on worker availability and system load.
-
-### 🔹 Fault Tolerance
-
-Automatically detects worker failure and reassigns tasks without stopping execution.
-
-### 🔹 Heartbeat Monitoring
-
-Continuously monitors worker health using periodic signals.
-
-### 🔹 Scalable Design
-
-Supports adding new worker nodes without modifying the system.
+* Distributed web scraping across multiple nodes
+* Parallel execution using master-worker architecture
+* Fault tolerance with automatic task reassignment
+* Real-time data aggregation and decision making
 
 ---
 
@@ -58,7 +17,7 @@ Supports adding new worker nodes without modifying the system.
 
 The system was used to scrape **10 websites in parallel** to analyze football statistics (Messi vs Ronaldo).
 
-### 📊 Aggregated Results
+### 📊 Results
 
 | Metric                | Value |
 | --------------------- | ----- |
@@ -75,15 +34,25 @@ The system was used to scrape **10 websites in parallel** to analyze football st
 
 ## 📸 Demo Output
 
-> 📌 <img width="323" height="564" alt="image" src="https://github.com/user-attachments/assets/2811682e-8280-46b0-9b36-6b6fb8b28327" />
-
-![Distributed Scraping Result]
+![Distributed Scraping Result](./docs/demo.png)
 
 ---
 
-## 🔄 Execution Flow
+## 🧠 Architecture
 
-1. Client submits job
+```
+CLIENT → MASTER NODE → WORKER NODES
+```
+
+* Master Node: Task scheduling & coordination
+* Worker Nodes: Parallel task execution
+* Common Lib: Shared communication models
+
+---
+
+## ⚙️ How It Works
+
+1. Client submits a job
 2. Master splits job into tasks
 3. Scheduler assigns tasks to workers
 4. Workers execute tasks in parallel
@@ -92,11 +61,63 @@ The system was used to scrape **10 websites in parallel** to analyze football st
 
 ---
 
+## ▶️ How to Run
+
+### Prerequisites
+
+* Java 17
+* Maven
+* PostgreSQL running on `localhost:5432`
+
+  * DB: `nexus_grid`
+  * Username: `postgres`
+  * Password: `password`
+
+---
+
+### Start Master Node
+
+```bash
+cd master-node
+mvn spring-boot:run
+```
+
+---
+
+### Start Worker Node(s)
+
+```bash
+cd worker-node
+mvn spring-boot:run
+```
+
+Run multiple instances to simulate distributed workers.
+
+---
+
+### Submit Job
+
+```bash
+curl -X POST http://localhost:8080/api/jobs/submitJob \
+-H "Content-Type: application/json" \
+-d '{"jobType":"SCRAPE","payload":"messi ronaldo stats"}'
+```
+
+---
+
+## 💣 Demo Scenario
+
+* Start multiple workers
+* Submit a job
+* Kill one worker manually
+* System continues execution without failure
+
+---
+
 ## 🛠️ Tech Stack
 
 * Java (Core + Advanced)
 * Spring Boot
-* REST APIs
 * PostgreSQL
 * Docker
 * Kubernetes
@@ -107,52 +128,29 @@ The system was used to scrape **10 websites in parallel** to analyze football st
 
 ```
 NEXUS-GRID/
-├── master-node/       # Central coordinator
-├── worker-node/       # Task executors
-├── common-lib/        # Shared DTOs & models
-├── kubernetes/        # Deployment configs
-├── plans/             # System blueprint
-├── docs/              # Screenshots & documentation
-├── docker-compose.yml
+├── master-node/
+├── worker-node/
+├── common-lib/
+├── kubernetes/
+├── docs/
 └── README.md
 ```
 
 ---
 
-## 💣 Demo Scenario
-
-* Start multiple worker nodes
-* Submit a distributed job
-* Terminate one worker manually
-* Observe:
-
-  * Task reassignment
-  * System continues execution
-
----
-
-## 🧩 Future Enhancements
-
-* Auto-scaling worker nodes
-* AI-based task scheduling
-* Real-time monitoring dashboard
-* Distributed file storage
-
----
-
 ## 🎯 Why This Project Matters
 
-This project demonstrates real-world system design concepts used in:
+This project demonstrates real-world system design used in:
 
-* Cloud Computing Platforms
+* Cloud Computing
 * Distributed Systems
-* Big Data Processing Engines
+* Big Data Processing
 
 ---
 
 ## 👤 Author
 
 **Abirbhab Bhattacharjee**
-Engineering Student | Distributed Systems Enthusiast
+Engineering Student | System Builder
 
 ---
